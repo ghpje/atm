@@ -1,4 +1,4 @@
-// Simple ATM app
+// Basic ATM app
 #include <iostream>
 using namespace std;
 
