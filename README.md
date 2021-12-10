@@ -4,6 +4,8 @@ Basic C++ app
 
 ## Features
 
-Checks balance (currently, balance is hard=coded)
+Checks balance (currently, balance is hard-coded)
+
 Makes deposits
+
 Makes withdrawls
