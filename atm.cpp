@@ -14,6 +14,7 @@ int main() {
     system("clear");
 
     cout << endl;
+    /*
     cout << "\033[0;31mTEST COLOR - Red\033[0m" << endl;
     cout << "\033[0;32mTEST COLOR - Green\033[0m" << endl;
     cout << "\033[0;36mTEST COLOR - Cyan\033[0m" << endl;
@@ -21,7 +22,8 @@ int main() {
     cout << "\033[1;31mTEST COLOR - Bold Red\033[0m" << endl;
     cout << "\033[1;32mTEST COLOR - Bold Green\033[0m" << endl;
     cout << "\033[1;33mTEST COLOR - Bold Yellow\033[0m" << endl;
-    
+    */
+
     do
     {
         // Menu system
@@ -64,17 +66,16 @@ int main() {
             } else if (balance == withdrawl) {
                 cout << "\033[1;33mThis will put your account at a $0 balance. Are you sure (Y/N)?: ";
                 cin >> zero_balance;
-                if (zero_balance == 'Y' || 'y') {
+                cout << endl;
+                if (zero_balance == 'Y' || zero_balance == 'y') {
                     balance -= withdrawl;
-                    cout << zero_balance;
                     cout << "\033[1;36mNew Balance: \033[0;31m$" << balance << endl;
-                } else if (zero_balance == 'N' || 'n') {
-                    cout << zero_balance;
-                    cout << "\033[1;36mWithdrawl canceled." << endl;
-                    cout << "Balance remains: \033[1;32m$" << balance << endl;
+                } else if (zero_balance == 'N' || zero_balance == 'n') {
+                    cout << "\033[0;33mWithdrawl canceled." << endl;
+                    cout << "\033[1;36mBalance remains: \033[1;32m$" << balance << endl;
                 } else {
-                    cout << zero_balance;
-                    cout << "\033[0;33mInvalid selection. Withdrawl canceled.";
+                    cout << "\033[0;33mInvalid selection. Withdrawl canceled." << endl;
+                    cout << "\033[1;36mBalance remains: \033[1;32m$" << balance << endl;
                 }
             } else {
                 cout << "\033[1;31mInsufficient funds!" << endl;
