@@ -2,6 +2,8 @@
 #include <iostream>
 using namespace std;
 
+void mainMenu();
+
 int main() {
 
     int option;
@@ -13,89 +15,91 @@ int main() {
     // Clear screen
     system("clear");
 
-    cout << endl;
-    /*
-    cout << "\033[0;31mTEST COLOR - Red\033[0m" << endl;
-    cout << "\033[0;32mTEST COLOR - Green\033[0m" << endl;
-    cout << "\033[0;36mTEST COLOR - Cyan\033[0m" << endl;
-    cout << "\033[1;36mTEST COLOR - Bold Cyan\033[0m" << endl;
-    cout << "\033[1;31mTEST COLOR - Bold Red\033[0m" << endl;
-    cout << "\033[1;32mTEST COLOR - Bold Green\033[0m" << endl;
-    cout << "\033[1;33mTEST COLOR - Bold Yellow\033[0m" << endl;
-    */
-
     do
     {
-        // Menu system
-        cout << endl;
-        cout << "\033[0;36m************************" << endl;
-        cout << "**Welcome to CPP Bank!**" << endl;
-        cout << "**********MENU**********" << endl;
-        cout << "1. Check Balance" << endl;
-        cout << "2. Make Deposit" << endl;
-        cout << "3. Make Withdrawl" << endl;
-        cout << "4. Quit" << endl;
-        cout << "************************" << endl;
+        mainMenu();
+        cout << "Make your selection: ";
         cin >> option;
-        system("clear");
         switch (option)
         {
         case 1:
-            cout << "Your balance is: \033[1;32m$" << balance << "\033[0m" << endl;
+            system("clear");
+            cout << "Your balance is: \e[1;32m$" << balance << "\e[0m" << endl;
+            cout << endl;
             break;
-
         case 2:
-            cout << "How much would you like to deposit?\033[0;32m" << endl;
-            cout << "$";
+            system("clear");
+            cout << "How much would you like to deposit? (Current balance: \e[0;32m$" << balance << "\e[0m)" << endl;
+            cout << "\e[0;32m$";
             cin >> deposit;
             balance += deposit;
             cout << endl;
-            cout << "\033[0;32mDeposited: $" << deposit << endl;
-            cout << "\033[1;36mNew Balance: \033[1;32m$" << balance << endl;
+            system("clear");
+            cout << "\e[0;32mDeposited: +$" << deposit << endl;
+            cout << "\e[1;36mNew Balance: \e[1;32m$" << balance << endl;
+            cout << endl;
             break;
-
         case 3:
-            cout << "How much would you like to withdraw?\033[0;31m" << endl;
-            cout << "$";
+            system("clear");
+            cout << "How much would you like to withdraw? (Current balance: \e[0;32m$" << balance << "\e[0m)" << endl;
+            cout << "\e[0;31m$";
             cin >> withdrawl;
             cout << endl;
             if (balance > withdrawl) {
                 balance -= withdrawl;
-                cout << "\033[0;31mWithdrew: $" << deposit << endl;
-                cout << "\033[1;36mNew Balance: \033[1;32m$" << balance << endl;
+                cout << endl;
+                system("clear");
+                cout << "\e[0;31mWithdrawn: -$" << withdrawl << endl;
+                cout << "\e[1;36mNew Balance: \e[1;32m$" << balance << endl;
+                cout << endl;
             } else if (balance == withdrawl) {
-                cout << "\033[1;33mThis will put your account at a $0 balance. Are you sure (Y/N)?: ";
+                cout << "\e[1;33mThis will put your account at a $0 balance. Are you sure (Y/N)?: ";
                 cin >> zero_balance;
                 cout << endl;
                 if (zero_balance == 'Y' || zero_balance == 'y') {
                     balance -= withdrawl;
-                    cout << "\033[1;36mNew Balance: \033[0;31m$" << balance << endl;
+                    cout << "\e[1;36mNew Balance: \e[0;31m$" << balance << endl;
+                    cout << endl;
                 } else if (zero_balance == 'N' || zero_balance == 'n') {
-                    cout << "\033[0;33mWithdrawl canceled." << endl;
-                    cout << "\033[1;36mBalance remains: \033[1;32m$" << balance << endl;
+                    cout << "\e[0;33mWithdrawl canceled." << endl;
+                    cout << "\e[1;36mBalance remains: \e[1;32m$" << balance << endl;
+                    cout << endl;
                 } else {
-                    cout << "\033[0;33mInvalid selection. Withdrawl canceled." << endl;
-                    cout << "\033[1;36mBalance remains: \033[1;32m$" << balance << endl;
+                    cout << "\e[0;33mInvalid selection. Withdrawl canceled." << endl;
+                    cout << "\e[1;36mBalance remains: \e[1;32m$" << balance << endl;
+                    cout << endl;
                 }
             } else {
-                cout << "\033[1;31mInsufficient funds!" << endl;
-                cout << "Your balance is only: $" << balance << "\033[0m" << endl;
+                cout << "\e[1;31mInsufficient funds!" << endl;
+                cout << "Current balance is: $" << balance << "\e[0m" << endl;
+                cout << endl;
             }
             break;
-
         case 4:
             cout << endl;
             cout << "Goodbye." << endl;
             cout << "Thank you for banking with us!" << endl;
             cout << endl;
+            exit(0);
             break;
-
         default:
-            cout << "\033[1;31mInvalid selection. Please choose a valid option from the menu below.\033[0m" << endl;
+            cout << "\e[1;31mInvalid selection. Please choose a valid option from the menu below.\e[0m" << endl;
             cout << endl;
             break;
         }
-    } while (option != 4);
+    } while (option != -1);
 
     return 0;
+}
+
+// Menu system
+void mainMenu() {
+        cout << "\e[0;36m************************\e[0m" << endl;
+        cout << "\e[0;36m**\e[0mWelcome to CPP Bank!\e[0;36m**\e[0m" << endl;
+        cout << "\e[0;36m**********\e[0mMENU\e[0;36m**********\e[0m" << endl;
+        cout << "1. Check Balance" << endl;
+        cout << "2. Make Deposit" << endl;
+        cout << "3. Make Withdrawl" << endl;
+        cout << "4. Quit" << endl;
+        cout << "\e[0;36m************************\e[0m" << endl;
 }
